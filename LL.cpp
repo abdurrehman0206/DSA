@@ -3,7 +3,7 @@ using namespace std;
 struct node
 {
     int data;
-    node *next = NULL;
+    node *next;
 };
 class list
 {
@@ -17,6 +17,7 @@ public:
         node *newNode = new node;
         newNode->data = num;
         newNode->next = NULL;
+
         if (head == NULL)
         {
             head = newNode;
@@ -48,10 +49,9 @@ public:
     {
 
         node *newNode = new node;
-
         newNode->data = num;
-
         newNode->next = NULL;
+
         if (head == NULL)
         {
             insertAtStart(num);
@@ -72,6 +72,32 @@ public:
             previous->next = newNode;
         }
     }
+    void deleteStart()
+    {
+        if (head == NULL)
+        {
+            cout << "List is empty !" << endl;
+            return;
+        }
+        node *temp = new node();
+        temp = head;
+        head = head->next;
+        delete (temp);
+    }
+    void deleteEnd(){
+        if(head == NULL){
+            cout << "List is empty !" << endl;
+            return;
+
+        }
+        node *temp = new node();
+        temp = head;
+        while(temp->next->next != NULL){
+            temp = temp->next;
+        }
+        delete (temp->next);
+        temp->next = NULL;
+    }
     void display()
     {
         if (head == NULL)
@@ -79,7 +105,7 @@ public:
         node *tmp = head;
         while (tmp != NULL)
         {
-            cout << tmp->data << (tmp->next ? " -> " : "");
+            cout << tmp->data << " -> ";
             tmp = tmp->next;
         }
         cout << endl;
@@ -97,6 +123,10 @@ int main()
     l.insertAtEnd(60);
     l.display();
     l.insertAtPosition(100, 6);
+    l.display();
+    l.deleteStart();
+    l.display();
+    l.deleteEnd();
     l.display();
     system("pause");
     return 0;
