@@ -143,6 +143,30 @@ public:
         cout << "Deleted " << temp->data << " at " << tempPos << endl;
         delete (temp);
     }
+    void search(int key)
+    {
+        int loc = 0;
+        bool found = false;
+        trav = head;
+        do
+        {
+            if (trav->data == key)
+            {
+                found = true;
+                break;
+            }
+            loc++;
+            trav = trav->next;
+        } while (trav != head);
+        if (found)
+        {
+            cout << "Element " << key << " found at " << loc << endl;
+        }
+        else
+        {
+            cout << "Element does not exists !" << endl;
+        }
+    }
     void print()
     {
         if (head == NULL && tail == NULL)
@@ -172,10 +196,14 @@ int main()
     l.print();
     l.deleteHead();
     l.print();
+    l.search(6);
     l.deleteTail();
     l.print();
     l.deletePos(2);
     l.print();
+    l.search(4);
+    l.search(9);
+
     system("pause");
     return 0;
 }
