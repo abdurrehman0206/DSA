@@ -179,7 +179,7 @@ public:
         {
             cout << trav->data << (trav == tail ? "" : "--->");
             trav = trav->next;
-        } while (trav != head);
+        } while (trav != head && head != tail);
         cout << endl;
     }
 };
