@@ -126,18 +126,24 @@ public:
             return;
         }
         trav = head;
-        do
+        // do
+        // {
+        //     trav = trav->next;
+        //     pos--;
+        // } while (trav->next != head && pos > 0);
+        while (trav->next != head && pos > 0)
         {
             trav = trav->next;
             pos--;
-        } while (trav != head && pos > 0);
-        if (trav == head)
+        }
+
+        if (trav->next == head)
         {
             deleteTail();
             return;
         }
-        node *temp = new node();
-        temp = trav;
+        node *temp = trav;
+
         trav->next->prev = trav->prev;
         trav->prev->next = trav->next;
         cout << "Deleted " << temp->data << " at " << tempPos << endl;
@@ -199,7 +205,10 @@ int main()
     l.search(6);
     l.deleteTail();
     l.print();
-    l.deletePos(2);
+    l.insertPos(8, 3);
+    l.deletePos(4);
+    l.insertPos(7, 4);
+   l.deletePos(1);
     l.print();
     l.search(4);
     l.search(9);

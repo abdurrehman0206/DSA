@@ -1,21 +1,75 @@
 #include <iostream>
 using namespace std;
-int sumArr(int *ptr, int base, int counter = 0)
+
+struct node
 {
-    if (base == counter)
+
+    int data;
+    node *next;
+};
+
+class queue
+{
+
+    node *head;
+    node *tail;
+
+public:
+    queue()
     {
-        return 0;
+        head = NULL;
+        tail = NULL;
     }
-    else
+
+    void enqueue(int data)
     {
-        return (*ptr) + sumArr(ptr + 1, base, counter + 1);
+
+        node *temp = new node;
+        temp->data = data;
+        temp->next = NULL;
+
+        if (head == NULL)
+        {
+
+            head = temp;
+            tail = temp;
+			return ;
+        }
+
+        temp->next = head;
+        head = temp;
     }
-}
+
+    void disp()
+    {
+
+        if (head == NULL)
+        {
+
+            cout << "Queue is Empty" << endl;
+            return;
+        }
+
+        node *ptr = head;
+
+        while (ptr != NULL)
+        {
+
+            cout << ptr->data << " ";
+            ptr = ptr->next;
+        }
+    }
+};
+
 int main()
 {
-    int array[] = {1, 2, 3, 4, 5, 6};
-    int *ptr = array;
-    cout << "SUM : " << sumArr(ptr, sizeof(array) / sizeof(array[0])) << endl;
+    queue q;
+
+    q.enqueue(0);
+    q.enqueue(1);
+    q.disp();
+
+    cout << endl;
     system("pause");
     return 0;
 }

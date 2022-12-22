@@ -1,36 +1,136 @@
 #include <iostream>
 using namespace std;
 
-class Cube
+class queue
 {
-    int length;
+
+    int arr[5];
+    int front = -1;
+    int rear = -1;
 
 public:
-    Cube() : length(0){};
-    void setLength()
+    bool is_empty()
     {
-        cout << "Input Lenght : ";
-        cin >> length;
+
+        if (front == -1 && rear == -1)
+        {
+
+            return true;
+        }
+        else
+        {
+
+            return false;
+        }
     }
-    void calcArea()
+
+    bool is_full()
     {
-        int surfaceArea = 0;
-        surfaceArea = 6 * length * length;
-        cout << "Surface Area : " << surfaceArea << endl;
+        if (rear == 4)
+        {
+
+            return true;
+        }
+        else
+        {
+
+            return false;
+        }
     }
-    void calcVolume()
+
+    void enqueue(int data)
     {
-        int volume = 0;
-        volume = length * length * length;
-        cout << "Volume : " << volume << endl;
+
+        if (is_full())
+        {
+            cout << "Overflow" << endl;
+            return;
+        }
+        else if (front == -1 && rear == -1)
+        {
+
+            front = rear = 0;
+            arr[rear] = data;
+        }
+        else
+        {
+
+            rear++;
+            arr[rear] = data;
+        }
+    }
+
+    void dequeue()
+    {
+
+        if (is_empty())
+        {
+
+            cout << "Queue is empty" << endl;
+        }
+        else if (front > rear)
+        {
+
+            front = rear = -1;
+        }
+        else
+        {
+
+            front++;
+        }
+
+        cout << endl;
+    }
+
+    void disp()
+    {
+
+        if (is_empty())
+        {
+
+            cout << "Queue is empty" << endl;
+            return;
+        }
+
+        for (int i = front; i <= rear; i++)
+        {
+
+            cout << arr[i] << " ";
+        }
+
+        cout << endl;
     }
 };
+
 int main()
 {
-    Cube c;
-    c.setLength();
-    c.calcArea();
-    c.calcVolume();
+
+    queue q;
+
+    cout << "Enqueue" << endl;
+    q.enqueue(0);
+    q.enqueue(1);
+    q.enqueue(2);
+    q.enqueue(3);
+    q.enqueue(4);
+    q.disp();
+
+    cout << endl
+         << "Dequeue" << endl;
+    q.dequeue();
+    q.disp();
+    q.dequeue();
+    q.disp();
+    q.dequeue();
+    q.disp();
+    q.dequeue();
+    q.disp();
+    q.dequeue();
+    q.disp();
+    q.dequeue();
+    q.disp();
+
+    cout << endl;
     system("pause");
     return 0;
 }
