@@ -8,7 +8,6 @@ class pQueue
     int size;
     void slide()
     {
-        int temp;
         for (int i = rear; i >= front; i--)
         {
             queue[i + 1] = queue[i];

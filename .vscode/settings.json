@@ -4,6 +4,7 @@
         "random": "cpp",
         "limits": "cpp",
         "ostream": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "*.tcc": "cpp"
     }
 }
