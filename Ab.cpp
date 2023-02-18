@@ -91,7 +91,7 @@ int main()
     char ch;
     while (flag)
     {
-        ch = getche();
+        ch = getch();
         switch (ch)
         {
         case 'z':
@@ -100,11 +100,10 @@ int main()
                 cout << "UNDO" << endl;
                 l2.push(l1.item());
                 l1.pop();
+                system("cls");
+                l1.display();
+                flag = true;
             }
-
-            system("cls");
-            l1.display();
-            flag = true;
             break;
         case 'x':
             if (l2.item() != -1)
@@ -112,10 +111,10 @@ int main()
                 cout << "REDO" << endl;
                 l1.push(l2.item());
                 l2.pop();
+                system("cls");
+                l1.display();
+                flag = true;
             }
-            system("cls");
-            l1.display();
-            flag = true;
             break;
         default:
             flag = false;
